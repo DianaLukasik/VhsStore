@@ -2,7 +2,7 @@ import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule }   from '@angular/forms';
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
-import { RouterModule }   from '@angular/router';
+
 //czy tu bootstrapa doimportowac, zainstalownay juz jest
 
 
@@ -12,31 +12,11 @@ import { TapesComponent }     from './tapes.component';
 import { RentalService }         from './rental.service';
 import { NavigationComponent }     from './navigation.component';
 
-
+import { AppRoutingModule }     from './app-routing.module';
 
 
 @NgModule({
-  imports:      [ BrowserModule, FormsModule, 
-  RouterModule.forRoot([
-  {
-    path: 'tapes',
-    component: TapesComponent
-  },
-  {
-  path: 'navigation',
-  component: NavigationComponent
-},
-{
-  path: '',
-  redirectTo: '/navigation',
-  pathMatch: 'full'
-},
-{
-  path: 'detail/:id',
-  component: VhsDetailComponent
-},
-])
-  ],
+  imports:      [ BrowserModule, FormsModule, AppRoutingModule],
   declarations: [ AppComponent, 
   VhsDetailComponent, 
   TapesComponent,

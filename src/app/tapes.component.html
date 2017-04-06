@@ -1,0 +1,12 @@
+    <ul class="tapes">
+      <li *ngFor="let vhs of tapes" 
+      [class.selected]="vhs === selectedVhs"
+      (click)="onSelect(vhs)" 
+      [routerLink]="['/detail', vhs.id]"  class="col-1-4">
+  <div class="badge">{{vhs.title}}</div>
+  <div>Genre: {{vhs.genre}}</div>
+  <div>Director: {{vhs.director}}</div>
+  <div>Stars: {{vhs.stars}}</div>
+  <div>Year: {{vhs.year}}</div>
+      </li>
+    </ul>
