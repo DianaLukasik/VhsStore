@@ -21,10 +21,7 @@ import { RouterModule }   from '@angular/router';
       </div>
 
     <h1>{{pageName}}</h1>
-    <nav>
-   <button routerLink="/tapes" routerLinkActive="active">Tapes</button>
-   <button routerLink="/navigation" routerLinkActive="active">Navigation</button>
-   </nav>
+
    <router-outlet></router-outlet>
   `,
   styleUrls: ['./app.component.css'],
