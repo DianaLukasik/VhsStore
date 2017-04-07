@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Vhs } from './vhs';
 import { RentalService } from './rental.service'
 import { RouterModule }   from '@angular/router';
-
+import { Router } from '@angular/router';
 
 
 
@@ -17,7 +17,9 @@ export class TapesComponent implements OnInit{
   tapes: Vhs [];
   selectedVhs: Vhs;
 
-  constructor(private rentalService: RentalService) { }
+  constructor(
+    private router: Router, 
+    private rentalService: RentalService) { }
 
     getTapes(): void {
     this.rentalService.getTapes().then(tapes => this.tapes = tapes);
@@ -30,6 +32,10 @@ export class TapesComponent implements OnInit{
     onSelect(vhs: Vhs): void {
     this.selectedVhs = vhs;
   }
+
+  gotoDetail(): void {
+  this.router.navigate(['/detail', this.selectedVhs.id]);
+}
 
  }
 

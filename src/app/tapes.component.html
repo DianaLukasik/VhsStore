@@ -1,12 +1,38 @@
+   <input type="text" placeholder="Type here" />
+   <p></p>
     <ul class="tapes">
       <li *ngFor="let vhs of tapes" 
-      [class.selected]="vhs === selectedVhs"
-      (click)="onSelect(vhs)" 
-      [routerLink]="['/detail', vhs.id]"  class="col-1-4">
-  <div class="badge">{{vhs.title}}</div>
+>
+  <div class="badge" data-toggle="modal" data-target="#detailsModal">{{vhs.title}}</div>
   <div>Genre: {{vhs.genre}}</div>
   <div>Director: {{vhs.director}}</div>
   <div>Stars: {{vhs.stars}}</div>
   <div>Year: {{vhs.year}}</div>
       </li>
     </ul>
+
+
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="detailsModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Movie details</h4>
+        </div>
+        <div class="modal-body">
+          <p>Genre: [attr.data-id]="vhs.year"</p>
+          
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
