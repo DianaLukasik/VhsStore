@@ -1,65 +1,103 @@
-   <input type="text" placeholder="Type here" />
-   <p></p>
-    <ul class="tapes">
-      <li *ngFor="let vhs of tapes" 
-
-        [class.selected]="vhs === selectedVhs"
-        (click)="onSelect(vhs)">
-  <div class="badge" data-toggle="modal" data-target="#detailsModal">{{vhs.title}}</div>
-  <div>Genre: {{vhs.genre}}</div>
-  <div>Director: {{vhs.director}}</div>
-  <div>Stars: {{vhs.stars}}</div>
-  <div>Year: {{vhs.year}}</div>
-  <button type="button" class="edit" data-toggle="modal" data-target="#editModal">edit</button> 
-      </li>
-    </ul>
+<!--<input type="text" placeholder="Type here" />
+<p></p>
+<ul class="tapes">
+  <li *ngFor="let vhs of tapes" [class.selected]="vhs === selectedVhs" (click)="onSelect(vhs)">
+    <div class="badge" data-toggle="modal" data-target="#detailsModal">{{vhs.title}}</div>
+    <div>Genre: {{vhs.genre}}</div>
+    <div>Director: {{vhs.director}}</div>
+    <div>Stars: {{vhs.stars}}</div>
+    <div>Year: {{vhs.year}}</div>
+    <button type="button" class="edit" data-toggle="modal" data-target="#editModal">edit</button>
+  </li>
+</ul>
 
 
+-->
 
 
 
+<table class="table table-inverse">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Title</th>
+      <th>Genre</th>
+      <th>Year</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let vhs of tapes" [class.selected]="vhs === selectedVhs" (click)="onSelect(vhs)">
+      <th scope="row">{{vhs.id}}</th>
+      <td data-toggle="modal" data-target="#detailsModal">{{vhs.title}}</td>
+      <td>{{vhs.genre}}</td>
+      <td>{{vhs.year}}</td>
+      <td><button type="button" class="edit" data-toggle="modal" data-target="#editModal">details</button> </td>
+      <td><button type="button" class="edit" data-toggle="modal" data-target="#editModal">rent</button> </td>
+      <td><button type="button" class="edit" data-toggle="modal" data-target="#editModal">edit</button> </td>
+      <td><button type="button" class="edit" data-toggle="modal" data-target="#editModal">remove</button> </td>
+    </tr>
 
-  <!-- Modal for details-->
-  <div class="modal fade" id="detailsModal" role="dialog">
-    <div class="modal-dialog">
-    
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Movie details</h4>
-        </div>
-        <div class="modal-body">
-          <vhs-detail [vhs]="selectedVhs"></vhs-detail>
-          
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
+  </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Modal for details-->
+<div class="modal fade" id="detailsModal" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Movie details</h4>
       </div>
-      
-    </div>
-  </div>
+      <div class="modal-body">
+        <vhs-detail [vhs]="selectedVhs"></vhs-detail>
 
-
-  <!-- Modal for edit-->
-  <div class="modal fade" id="editModal" role="dialog">
-    <div class="modal-dialog">
-    
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Edit movie</h4>
-        </div>
-        <div class="modal-body">
-          <vhs-detail [vhs]="selectedVhs"></vhs-detail>
-          
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
       </div>
-      
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
     </div>
+
   </div>
+</div>
+
+
+<!-- Modal for edit-->
+<div class="modal fade" id="editModal" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Edit movie</h4>
+      </div>
+      <div class="modal-body">
+        <vhs-detail [vhs]="selectedVhs"></vhs-detail>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
