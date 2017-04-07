@@ -14,6 +14,13 @@
 
 -->
 
+<!--to dodawanie wywalic w modalne-->
+<div>
+  <label>Movie title:</label> <input #vhsTitle />
+  <button (click)="add(vhsTitle.value); vhsTitle.value=''">
+    Add
+  </button>
+</div>
 
 
 <table class="table table-inverse">
@@ -34,7 +41,8 @@
       <td><button type="button" class="edit" data-toggle="modal" data-target="#editModal">details</button> </td>
       <td><button type="button" class="edit" data-toggle="modal" data-target="#editModal">rent</button> </td>
       <td><button type="button" class="edit" data-toggle="modal" data-target="#editModal">edit</button> </td>
-      <td><button type="button" class="edit" data-toggle="modal" data-target="#editModal">remove</button> </td>
+      <td><button class="delete"
+  (click)="delete(vhs); $event.stopPropagation()">x</button> </td>
     </tr>
 
   </tbody>

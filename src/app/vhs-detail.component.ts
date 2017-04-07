@@ -39,6 +39,11 @@ constructor(
             .subscribe(vhs => this.vhs = vhs);
     } 
 
+  save(): void {
+    this.rentalService.update(this.vhs)
+      .then(() => this.goBack());
+  }
+
 goBack(): void {
   this.location.back();
 }

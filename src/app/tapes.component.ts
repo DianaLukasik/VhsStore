@@ -21,6 +21,27 @@ export class TapesComponent implements OnInit{
     private router: Router, 
     private rentalService: RentalService) { }
 
+
+      add(title: string): void {
+    title = title.trim();
+    if (!title) { return; }
+    this.rentalService.create(title)
+      .then(vhs => {
+        this.tapes.push(vhs);
+        this.selectedVhs = null;
+      });
+  }
+
+  delete(vhs: Vhs): void {
+    this.rentalService
+        .delete(vhs.id)
+        .then(() => {
+          this.tapes = this.tapes.filter(h => h !== vhs);
+          if (this.selectedVhs === vhs) { this.selectedVhs = null; }
+        });
+  }
+
+
     getTapes(): void {
     this.rentalService.getTapes().then(tapes => this.tapes = tapes);
   }
