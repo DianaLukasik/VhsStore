@@ -1,22 +1,33 @@
+<button type="button" class="add" data-toggle="modal" data-target="#addModal">Add Movie</button>
 
-<button type="button" class="add" data-toggle="modal" data-target="#addModal">Add Movie</button> 
+<div>
+  <div>Filter by:</div>
+  <div>
+    <input type='text' [(ngModel)]='term' />
+  </div>
+</div>
 
-        <div>
-            <div>Filter by:</div>
-            <div>
-                <input type='text' [(ngModel)]='term' />
-            </div>
-        </div>
+<!--Buttons for sorting-->
+<button class="btn btn-default" [class.active]="sortBy==='title'" (click)="sortBy='title'">SortByTitle</button>
+<button class="btn btn-default" [class.active]="sortBy==='year'" (click)="sortBy='year'">SortByYear</button>
+
 
 
 <table class="table table-bordered table-striped table-hover">
   <thead>
     <tr>
-      <th><h4>#</h4></th>
-      <th><h4>Title</h4></th>
-      <th><h4>Genre</h4></th>
-      <th><h4>Year</h4></th>
-      <th><h4>Status</h4></th>
+      <th>
+        <h4>#</h4>
+      </th>
+      <th>
+        <h4>Title</h4>
+      </th>
+      <th>
+        <h4>Genre</h4>
+      </th>
+      <th>
+        <h4>Year</h4>
+      </th>
       <th width="10%"></th>
       <th width="10%"></th>
       <th width="10%"></th>
@@ -24,8 +35,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let vhs of tapes | filter: term"
-      [class.selected]="vhs === selectedVhs" (click)="onSelect(vhs)">
+    <tr *ngFor="let vhs of (tapes | free) | filter: term" [class.selected]="vhs === selectedVhs" (click)="onSelect(vhs)">
       <th scope="row">{{vhs.id}}</th>
       <td data-toggle="modal" data-target="#detailsModal">{{vhs.title}}</td>
       <td>{{vhs.genre}}</td>
@@ -39,16 +49,6 @@
 
   </tbody>
 </table>
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -102,30 +102,52 @@
 </div>
 
 
-<!-- Modal for add-->
-<div class="modal fade" id="addModal" role="dialog">
-  <div class="modal-dialog">
 
-    <!-- Modal content-->
+
+
+
+<div class="modal fade" id="addModal" role="dialog">
+  <div class="modal-dialog modal-sm">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Edit movie</h4>
+        <h4 class="modal-title">Add new tape</h4>
       </div>
       <div class="modal-body">
+        <!-- Add tape form -->
+        <form id="add-tape" class="navbar-form navbar-left">
+          <div>
+            <label>Id: </label>
+            <input name="id" type="text" class="form-control" [(ngModel)]="id" />
+            <label>Title: </label>
+            <input name="title" type="text" class="form-control" [(ngModel)]="title" />
+            <label>Genre: </label>
+            <input name="title" type="text" class="form-control" [(ngModel)]="genre" />
+            <label>Director: </label>
+            <input name="director" type="text" class="form-control" [(ngModel)]="director" />
+            <label>Stars: </label>
+            <input name="stars" type="text" class="form-control" [(ngModel)]="stars" />
+            <label>Release year: </label>
+            <input name="year" type="text" class="form-control" [(ngModel)]="year" />
 
-<div>
-  <label>Movie title:</label> <input #vhsTitle />
-  <label>Movie year:</label> <input #vhsYear />
-  <button (click)="add(vhsTitle.value); vhsTitle.value=''">
-    Add
-  </button>
-</div>
+          </div>
+          <div>
+            <label>Description: </label>
+            <textarea name="description" class="form-control" rows="5" id="comment" [(ngModel)]="description"></textarea>
+
+            <label>Status: </label>
+            <input name="status" type="text" class="input-xlarge uneditable-input" id="disabledInput" placeholder="free" disabled=""
+            />
+            <label>Link to image: </label>
+            <input name="image" type="text" class="form-control" [(ngModel)]="image" />
+          </div>
+          <p></p>
+          <button class="btn btn-warning" (click)="add()">Add</button>
+        </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
     </div>
-
   </div>
 </div>

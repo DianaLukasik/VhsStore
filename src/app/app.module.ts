@@ -14,6 +14,8 @@ import { TapesComponent }     from './tapes.component';
 import { RentalService }         from './rental.service';
 import { RentedTapesComponent }     from './rented-tapes.component';
 import { MovieFilterPipe } from './filter.pipe';
+import { RentedPipe } from './rented.pipe';
+import { FreePipe } from './free.pipe';
 
 import { AppRoutingModule }     from './app-routing.module';
 
@@ -25,7 +27,9 @@ import { AppRoutingModule }     from './app-routing.module';
   VhsEditComponent, 
   TapesComponent,
   RentedTapesComponent,
-  MovieFilterPipe],
+  MovieFilterPipe,
+  RentedPipe,
+  FreePipe],
   providers: [RentalService],
   bootstrap:    [ AppComponent ]
 })

@@ -7,6 +7,6 @@ export class Vhs {
   year: number;
   time: number;
   description: string;
-  status: string;
+  rented: boolean;
   image?: string;
 }
