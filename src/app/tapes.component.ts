@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Vhs } from './vhs';
-import { RentalService } from './rental.service'
+import { RentalService } from './rental.service';
 import { RouterModule }   from '@angular/router';
 import { Router } from '@angular/router';
+
 
 
 
@@ -41,6 +42,14 @@ export class TapesComponent implements OnInit{
         });
   }
 
+
+  rent(vhs: Vhs): void {
+    vhs.status="rented";
+    this.rentalService
+        .update(vhs);
+
+
+  }
 
     getTapes(): void {
     this.rentalService.getTapes().then(tapes => this.tapes = tapes);

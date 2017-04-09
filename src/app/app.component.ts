@@ -13,14 +13,17 @@ import { RouterModule }   from '@angular/router';
               <span class="icon-bar"></span>
             </button>
             <a class="brand" href="tapes">Movie list</a>
-            <a class="brand" href="#">Rented tapes</a>
+            <a class="brand" href="rented">Rented tapes</a>
             <div class="nav-collapse collapse">
             </div>
           </div>
         </div>
       </div>
 
-    <h1>{{pageName}}</h1>
+    <h1><img src="img/test/mchammer.gif">     {{pageName}}     <img src="img/test/mchammer.gif"></h1>
+
+
+
 
    <router-outlet></router-outlet>
   `,

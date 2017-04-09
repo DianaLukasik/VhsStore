@@ -9,9 +9,11 @@ import { InMemoryDataService }  from './in-memory-data.service';
 
 import { AppComponent }  from './app.component';
 import { VhsDetailComponent } from './vhs-detail.component';
+import { VhsEditComponent } from './vhs-edit.component';
 import { TapesComponent }     from './tapes.component';
 import { RentalService }         from './rental.service';
-import { NavigationComponent }     from './navigation.component';
+import { RentedTapesComponent }     from './rented-tapes.component';
+import { MovieFilterPipe } from './filter.pipe';
 
 import { AppRoutingModule }     from './app-routing.module';
 
@@ -20,8 +22,10 @@ import { AppRoutingModule }     from './app-routing.module';
   imports:      [ BrowserModule, FormsModule, AppRoutingModule, HttpModule, InMemoryWebApiModule.forRoot(InMemoryDataService)],
   declarations: [ AppComponent, 
   VhsDetailComponent, 
+  VhsEditComponent, 
   TapesComponent,
-  NavigationComponent],
+  RentedTapesComponent,
+  MovieFilterPipe],
   providers: [RentalService],
   bootstrap:    [ AppComponent ]
 })

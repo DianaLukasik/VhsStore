@@ -1,48 +1,40 @@
-<!--<input type="text" placeholder="Type here" />
-<p></p>
-<ul class="tapes">
-  <li *ngFor="let vhs of tapes" [class.selected]="vhs === selectedVhs" (click)="onSelect(vhs)">
-    <div class="badge" data-toggle="modal" data-target="#detailsModal">{{vhs.title}}</div>
-    <div>Genre: {{vhs.genre}}</div>
-    <div>Director: {{vhs.director}}</div>
-    <div>Stars: {{vhs.stars}}</div>
-    <div>Year: {{vhs.year}}</div>
-    <button type="button" class="edit" data-toggle="modal" data-target="#editModal">edit</button>
-  </li>
-</ul>
+
+<button type="button" class="add" data-toggle="modal" data-target="#addModal">Add Movie</button> 
+
+        <div>
+            <div>Filter by:</div>
+            <div>
+                <input type='text' [(ngModel)]='term' />
+            </div>
+        </div>
 
 
--->
-
-<!--to dodawanie wywalic w modalne-->
-<div>
-  <label>Movie title:</label> <input #vhsTitle />
-  <button (click)="add(vhsTitle.value); vhsTitle.value=''">
-    Add
-  </button>
-</div>
-
-
-<table class="table table-inverse">
+<table class="table table-bordered table-striped table-hover">
   <thead>
     <tr>
-      <th>#</th>
-      <th>Title</th>
-      <th>Genre</th>
-      <th>Year</th>
+      <th><h4>#</h4></th>
+      <th><h4>Title</h4></th>
+      <th><h4>Genre</h4></th>
+      <th><h4>Year</h4></th>
+      <th><h4>Status</h4></th>
+      <th width="10%"></th>
+      <th width="10%"></th>
+      <th width="10%"></th>
+      <th width="5%"></th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let vhs of tapes" [class.selected]="vhs === selectedVhs" (click)="onSelect(vhs)">
+    <tr *ngFor="let vhs of tapes | filter: term"
+      [class.selected]="vhs === selectedVhs" (click)="onSelect(vhs)">
       <th scope="row">{{vhs.id}}</th>
       <td data-toggle="modal" data-target="#detailsModal">{{vhs.title}}</td>
       <td>{{vhs.genre}}</td>
       <td>{{vhs.year}}</td>
-      <td><button type="button" class="edit" data-toggle="modal" data-target="#editModal">details</button> </td>
-      <td><button type="button" class="edit" data-toggle="modal" data-target="#editModal">rent</button> </td>
-      <td><button type="button" class="edit" data-toggle="modal" data-target="#editModal">edit</button> </td>
-      <td><button class="delete"
-  (click)="delete(vhs); $event.stopPropagation()">x</button> </td>
+      <td>{{vhs.status}}</td>
+      <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#detailsModal">details</button> </td>
+      <td><button type="button" class="btn btn-primary" (click)="rent(vhs)">rent</button> </td>
+      <td><button type="button" class="btn btn-inverse" data-toggle="modal" data-target="#editModal">edit</button> </td>
+      <td><button class="btn btn-danger" (click)="delete(vhs); $event.stopPropagation()">x</button> </td>
     </tr>
 
   </tbody>
@@ -64,9 +56,8 @@
 
 
 
-
 <!-- Modal for details-->
-<div class="modal fade" id="detailsModal" role="dialog">
+<div class="modal fade" id="detailsModal" role="dialog" background=black>
   <div class="modal-dialog">
 
     <!-- Modal content-->
@@ -99,8 +90,37 @@
         <h4 class="modal-title">Edit movie</h4>
       </div>
       <div class="modal-body">
-        <vhs-detail [vhs]="selectedVhs"></vhs-detail>
+        <vhs-edit [vhs]="selectedVhs"></vhs-edit>
 
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- Modal for add-->
+<div class="modal fade" id="addModal" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Edit movie</h4>
+      </div>
+      <div class="modal-body">
+
+<div>
+  <label>Movie title:</label> <input #vhsTitle />
+  <label>Movie year:</label> <input #vhsYear />
+  <button (click)="add(vhsTitle.value); vhsTitle.value=''">
+    Add
+  </button>
+</div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

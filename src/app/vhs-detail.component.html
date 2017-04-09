@@ -1,12 +1,11 @@
-
-      <div *ngIf="vhs">
-      <h2>{{vhs.title}} details!</h2>
-       <div><label>id: </label>{{vhs.id}}</div>
-       <div>
-        <label>title: </label>
-        <input [(ngModel)]="vhs.title" placeholder="title"/>
-       </div>
-         <button (click)="goBack()">Back</button>
-  <button (click)="save()">Save</button>
-     </div>
-      
+<div *ngIf="vhs">
+  <div><img id="image" src="./img/{{vhs.image}}" style="width: 33%; height: 33%;" align="right" /></div>
+  <h2>{{vhs.title}}</h2>
+  <div><span class="label">Year:</span> {{vhs.year}}</div>
+  <div><span class="label">Time:</span> {{vhs.time}}</div>
+  <div><span class="label">Genre:</span> {{vhs.genre}}</div>
+  <div><span class="label">Director:</span> {{vhs.director}}</div>
+  <div><span class="label">Stars:</span> {{vhs.stars}}</div>
+  <p></p>
+  <div><span class="label">Description:</span> {{vhs.description}}</div>
+</div>

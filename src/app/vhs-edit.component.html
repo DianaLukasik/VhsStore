@@ -1,0 +1,10 @@
+<div *ngIf="vhs">
+  <h2>{{vhs.title}} details!</h2>
+  <div>
+    <label>title: </label>
+    <input name="title" type="text" class="form-control" [(ngModel)]="title" />
+    <label>director: </label>
+    <input [(ngModel)]="vhs.director" placeholder="director" />
+  </div>
+  <button class="btn btn-warning" (click)="update(vhs)">Save</button>
+</div>

@@ -1,0 +1,10 @@
+<div id="search-component">
+  <h4>Vhs Search</h4>
+  <input #searchBox id="search-box" (keyup)="search(searchBox.value)" />
+  <div>
+    <div *ngFor="let vhs of tapes | async"
+         (click)="gotoDetail(vhs)" class="search-result" >
+      {{vhs.<title></title>}}
+    </div>
+  </div>
+</div>
