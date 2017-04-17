@@ -14,6 +14,7 @@ import { Vhs } from './vhs';
 })
 export class VhsDetailComponent implements OnInit{
      @Input() vhs: Vhs;
+//     @Input() sortBy: string;
 
 
 constructor(

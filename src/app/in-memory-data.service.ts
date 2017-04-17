@@ -50,7 +50,7 @@ export class InMemoryDataService implements InMemoryDbService {
         rented: false,
         image: 'GoldenEye.jpg'
       },
-            {
+      {
         id: 5,
         title: 'The Blair Witch Project',
         director: '	Eduardo Sánchez',
@@ -62,7 +62,7 @@ export class InMemoryDataService implements InMemoryDbService {
         rented: false,
         image: 'BlairWitchProject.jpg'
       },
-                  {
+      {
         id: 6,
         title: 'Natural Born Killers',
         director: 'Oliver Stone',
@@ -74,7 +74,7 @@ export class InMemoryDataService implements InMemoryDbService {
         rented: false,
         image: 'NaturalBornKillers.jpg'
       },
-                        {
+      {
         id: 7,
         title: 'The Lion King',
         director: 'Rob Minkoff',
@@ -86,7 +86,7 @@ export class InMemoryDataService implements InMemoryDbService {
         rented: false,
         image: 'TheLionKing.jpg'
       },
-                        {
+      {
         id: 8,
         title: 'Trainspotting',
         director: 'Danny Boyle',
@@ -98,7 +98,7 @@ export class InMemoryDataService implements InMemoryDbService {
         rented: false,
         image: 'Trainspotting.jpg'
       },
-                        {
+      {
         id: 9,
         title: 'Edward Scissorhands',
         director: 'Tim Burton',
@@ -110,7 +110,7 @@ export class InMemoryDataService implements InMemoryDbService {
         rented: false,
         image: 'EdwardScissorhands.jpg'
       },
-                        {
+      {
         id: 10,
         title: 'Matrix',
         director: '	The Wachowski Brothers',
@@ -122,8 +122,11 @@ export class InMemoryDataService implements InMemoryDbService {
         rented: false,
         image: 'Matrix.jpg'
       },
-      
+
     ];
     return { tapes };
   }
+
 }
+
+

@@ -7,9 +7,9 @@ import { Vhs } from './vhs';
 export class RentedPipe implements PipeTransform {
 
     transform(tapes: Vhs[]) {
-                    if (tapes==null) {
-      return null;
-    }
+        if (tapes == null) {
+            return null;
+        }
         return tapes.filter(vhs => vhs.rented);
     }
 

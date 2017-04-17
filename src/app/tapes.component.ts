@@ -3,7 +3,11 @@ import { Vhs } from './vhs';
 import { RentalService } from './rental.service';
 import { RouterModule } from '@angular/router';
 import { Router } from '@angular/router';
+import { InMemoryDataService } from './in-memory-data.service';
 
+import { Injectable } from '@angular/core';
+
+import { FormsModule } from "@angular/forms"; 
 
 
 
@@ -13,26 +17,32 @@ import { Router } from '@angular/router';
   styleUrls: ['./tapes.component.css']
 })
 
+
 export class TapesComponent implements OnInit {
   @Input() filterBy: string;
 
   tapes: Vhs[];
   selectedVhs: Vhs;
+  model = new Vhs();
+  sortType: string = 'id';
+
 
   constructor(
     private router: Router,
     private rentalService: RentalService) { }
 
 
-  add(title: string): void {
-    title = title.trim();
-    if (!title) { return; }
-    this.rentalService.create(title)
-      .then(vhs => {
-        this.tapes.push(vhs);
-        this.selectedVhs = null;
-      });
+  onSubmit() {
+    this.model.rented = false;
+    this.rentalService.create(this.model)
+    this.ngOnInit();
+    ;
   }
+
+  newMovie() {
+    this.model = new Vhs();
+  }
+
 
   delete(vhs: Vhs): void {
     this.rentalService
@@ -46,7 +56,7 @@ export class TapesComponent implements OnInit {
 
   rent(vhs: Vhs): void {
     vhs.rented = !vhs.rented;
-    this.rentalService.update(vhs).then(() => {
+    this.rentalService.changeStatus(vhs).then(() => {
       this.tapes = this.tapes.filter(h => h !== vhs);
       if (this.selectedVhs === vhs) { this.selectedVhs = null; }
     });
@@ -68,17 +78,17 @@ export class TapesComponent implements OnInit {
     this.router.navigate(['/detail', this.selectedVhs.id]);
   }
 
-  // For sorting
-  // ngOnChanges(){
-  //   if (this.tapes) {
-  //     this.sortBy === 'title' ? this.tapes.sort(sortByTitleAsc) : this.tapes.sort(sortByYearDesc);
-  //   }
-  // }
+
+  sortBy(criteria: string): void {
+    this.sortType = criteria;
+  }
+
+
+
+doSomething() {
+return 'done';
+} 
+
 
 }
 
-function sortByTitleAsc (vhs1: Vhs, vhs2: Vhs){
-  if(vhs1.title > vhs2.title) return 1
-  else if (vhs1.title === vhs2.title) return 0
-  else return -1
-}

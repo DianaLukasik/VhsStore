@@ -13,7 +13,7 @@ import 'rxjs/add/operator/toPromise';
 export class RentalService {
 
   private headers = new Headers({'Content-Type': 'application/json'});
-  private tapesUrl = 'api/tapes';  // URL to web api
+  private tapesUrl = 'api/tapes';  
 
   constructor(private http: Http) { }
 
@@ -41,9 +41,9 @@ export class RentalService {
       .catch(this.handleError);
   }
 
-  create(title: string): Promise<Vhs> {
+    create(vhs: Vhs): Promise<Vhs> {
     return this.http
-      .post(this.tapesUrl, JSON.stringify({title: title}), {headers: this.headers})
+      .post(this.tapesUrl, JSON.stringify(vhs), {headers: this.headers})
       .toPromise()
       .then(res => res.json().data as Vhs)
       .catch(this.handleError);
@@ -51,6 +51,7 @@ export class RentalService {
 
   update(vhs: Vhs): Promise<Vhs> {
     const url = `${this.tapesUrl}/${vhs.id}`;
+    console.log("update poszedl")
     return this.http
       .put(url, JSON.stringify(vhs), {headers: this.headers})
       .toPromise()
@@ -59,9 +60,17 @@ export class RentalService {
   }
 
 
+changeStatus(vhs: Vhs): Promise<Vhs> {
+    const url = `${this.tapesUrl}/${vhs.id}`;
+    return this.http
+      .put(url, JSON.stringify(vhs), {headers: this.headers})
+      .toPromise()
+      .then(() =>vhs)
+      .catch(this.handleError);
+  } 
 
   private handleError(error: any): Promise<any> {
-    console.error('An error occurred', error); // for demo purposes only
+    console.error('An error occurred', error); 
     return Promise.reject(error.message || error);
   }
 }

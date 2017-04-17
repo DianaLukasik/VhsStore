@@ -1,63 +1,49 @@
-
-
-
-        <div>
-            <div>Filter by:</div>
-            <div>
-                <input type='text' [(ngModel)]='term' />
-            </div>
-        </div>
-
-
+<h4>Rented Tapes</h4>
+<div>
+  <div>Filter by:</div>
+  <div>
+    <input type='text' [(ngModel)]='term' />
+  </div>
+</div>
 <table class="table table-bordered table-striped table-hover">
   <thead>
     <tr>
-      <th><h4>#</h4></th>
-      <th><h4>Title</h4></th>
-      <th><h4>Genre</h4></th>
-      <th><h4>Year</h4></th>
-      <th width="10%"></th>
-      <th width="10%"></th>
-      <th width="10%"></th>
-      <th width="5%"></th>
+      <th>
+        <h4>#</h4>
+      </th>
+      <th>
+        <h4>Title</h4>
+      </th>
+      <th>
+        <h4>Genre</h4>
+      </th>
+      <th>
+        <h4>Year</h4>
+      </th>
+      <th>
+        <h4>Director</h4>
+      </th>
+      <th width="20%"></th>
+      <th width="20%"></th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let vhs of (tapes | rented) | filter: term"
-      [class.selected]="vhs === selectedVhs" (click)="onSelect(vhs)">
+    <tr *ngFor="let vhs of (tapes | rented) | filter: term" [class.selected]="vhs === selectedVhs" (click)="onSelect(vhs)">
       <th scope="row">{{vhs.id}}</th>
       <td data-toggle="modal" data-target="#detailsModal">{{vhs.title}}</td>
       <td>{{vhs.genre}}</td>
       <td>{{vhs.year}}</td>
-      <td>{{vhs.status}}</td>
+      <td>{{vhs.director}}</td>
       <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#detailsModal">details</button> </td>
-      <td><button type="button" class="btn btn-primary" (click)="free(vhs)">rent</button> </td>
+      <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#returnModal">return movie</button>        </td>
     </tr>
-
   </tbody>
 </table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 <!-- Modal for details-->
 <div class="modal fade" id="detailsModal" role="dialog" background=black>
   <div class="modal-dialog">
-
-    <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -76,53 +62,23 @@
 </div>
 
 
-<!-- Modal for edit-->
-<div class="modal fade" id="editModal" role="dialog">
+<!-- Modal for return-->
+<div class="modal fade" id="returnModal" role="dialog">
   <div class="modal-dialog">
-
-    <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Edit movie</h4>
-      </div>
-      <div class="modal-body">
-        <vhs-edit [vhs]="selectedVhs"></vhs-edit>
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-
-<!-- Modal for add-->
-<div class="modal fade" id="addModal" role="dialog">
-  <div class="modal-dialog">
-
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Edit movie</h4>
-      </div>
-      <div class="modal-body">
-
-<div>
-  <label>Movie title:</label> <input #vhsTitle />
-  <label>Movie year:</label> <input #vhsYear />
-  <button (click)="add(vhsTitle.value); vhsTitle.value=''">
-    Add
-  </button>
-</div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <h4 class="modal-title">Return and pay</h4>
+        <div class="modal-body">
+          <label><input name="unrewinded" type="checkbox" class="form-control" [(ngModel)]="unrewinded" /> Extra payment for unrewind vhs</label>
+          <label><input name="broken" type="checkbox" class="form-control" [(ngModel)]="delay" /> Extra payment for delay</label>
+          <label><input name="broken" type="checkbox" class="form-control" [(ngModel)]="broken" /> Extra payment for broken vhs</label>
+          <h6>Total payment: {{calculatePayment(delay, unrewinded, broken)}} $</h6>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success" (click)="free(selectedVhs)" data-dismiss="modal">Return</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
       </div>
     </div>
-
   </div>
-</div>

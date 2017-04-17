@@ -1,11 +1,11 @@
 <div *ngIf="vhs">
   <div><img id="image" src="./img/{{vhs.image}}" style="width: 33%; height: 33%;" align="right" /></div>
   <h2>{{vhs.title}}</h2>
-  <div><span class="label">Year:</span> {{vhs.year}}</div>
-  <div><span class="label">Time:</span> {{vhs.time}}</div>
-  <div><span class="label">Genre:</span> {{vhs.genre}}</div>
-  <div><span class="label">Director:</span> {{vhs.director}}</div>
-  <div><span class="label">Stars:</span> {{vhs.stars}}</div>
+  <div id="year"><span class="label">Year:</span> {{vhs.year}}</div>
+  <div id="time"><span class="label">Time:</span> {{vhs.time}}</div>
+  <div id="genre"><span class="label">Genre:</span> {{vhs.genre}}</div>
+  <div id="director"><span class="label">Director:</span> {{vhs.director}}</div>
+  <div id="stars"><span class="label">Stars:</span> {{vhs.stars}}</div>
   <p></p>
-  <div><span class="label">Description:</span> {{vhs.description}}</div>
+  <div id="description"><span class="label">Description:</span> {{vhs.description}}</div>
 </div>
